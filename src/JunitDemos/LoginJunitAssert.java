@@ -2,13 +2,17 @@ package JunitDemos;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class LoginJunit {
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
+
+public class LoginJunitAssert {
 
 
     WebDriver driver;
@@ -31,14 +35,36 @@ public class LoginJunit {
     @Test
     public void myTest1() {
 
-        driver.get("http://stock.scriptinglogic.net");
+        driver.get("https://stock.scriptinglogic.net");
         driver.findElement(By.cssSelector("#login-username")).sendKeys("admin"); // #login-username
-        driver.findElement(By.cssSelector("#login-password")).sendKeys("admin"); // #login-password
-       // driver.findElement(By.cssSelector(".blue")).click(); // .blue
+        driver.findElement(By.cssSelector("#login-password")).sendKeys("admin1"); // #login-password
+        driver.findElement(By.cssSelector(".blue")).click(); // .blue
+
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+
+      /*  String expected = "https://stock.scriptinglogic.net/dashboard.php";
+        String actual = driver.getCurrentUrl();*/
+
+      /*  String expected = "POSNIC - Dashboard";
+        String actual = driver.getTitle();*/
+
+        String expected = "Log out";
+
+        String actual = null;
+
+        try {
+             actual = driver.findElement(By.cssSelector("a.menu-logoff")).getText();
+        }
+        catch (Exception e)
+        {
+            actual="";
+        }
+        Assert.assertEquals("this is not a dashboard",expected,actual);
+
 
     }
 
-    @Test
+   /* @Test
     public void myTest2() {
 
         driver.get("http://stock.scriptinglogic.net");
@@ -56,5 +82,5 @@ public class LoginJunit {
         driver.findElement(By.cssSelector("#login-password")).sendKeys(""); // #login-password
        // driver.findElement(By.cssSelector(".blue")).click(); // .blue
 
-    }
+    }*/
 }

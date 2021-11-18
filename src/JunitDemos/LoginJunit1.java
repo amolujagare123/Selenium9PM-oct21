@@ -1,20 +1,18 @@
 package JunitDemos;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class LoginJunit {
+public class LoginJunit1 {
 
 
-    WebDriver driver;
+    static  WebDriver driver;
 
-    @Before // method below this annotation will run before every test method
-    public void openBrowser()
+    @BeforeClass // method below this annotation will run before first test method of the class
+    public static  void openBrowser()
     {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
@@ -22,8 +20,8 @@ public class LoginJunit {
     }
 
 
-    @After // method below this annotation will run after every test method
-    public void closeBrowser() throws InterruptedException {
+    @AfterClass // method below this annotation will run after last test method of the class
+    public static  void closeBrowser() throws InterruptedException {
         Thread.sleep(4000);
         driver.close();
     }
@@ -34,7 +32,7 @@ public class LoginJunit {
         driver.get("http://stock.scriptinglogic.net");
         driver.findElement(By.cssSelector("#login-username")).sendKeys("admin"); // #login-username
         driver.findElement(By.cssSelector("#login-password")).sendKeys("admin"); // #login-password
-       // driver.findElement(By.cssSelector(".blue")).click(); // .blue
+       driver.findElement(By.cssSelector(".blue")).click(); // .blue
 
     }
 
@@ -44,7 +42,7 @@ public class LoginJunit {
         driver.get("http://stock.scriptinglogic.net");
         driver.findElement(By.cssSelector("#login-username")).sendKeys("545"); // #login-username
         driver.findElement(By.cssSelector("#login-password")).sendKeys("dsds"); // #login-password
-       // driver.findElement(By.cssSelector(".blue")).click(); // .blue
+        driver.findElement(By.cssSelector(".blue")).click(); // .blue
 
     }
 
@@ -54,7 +52,7 @@ public class LoginJunit {
         driver.get("http://stock.scriptinglogic.net");
         driver.findElement(By.cssSelector("#login-username")).sendKeys(""); // #login-username
         driver.findElement(By.cssSelector("#login-password")).sendKeys(""); // #login-password
-       // driver.findElement(By.cssSelector(".blue")).click(); // .blue
+        driver.findElement(By.cssSelector(".blue")).click(); // .blue
 
     }
 }
