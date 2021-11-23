@@ -21,7 +21,7 @@ public class TestNGDemo1 {
         driver.findElement(By.cssSelector(".blue")).click(); // .blue
 
     }
-    @Test
+    @Test (enabled = false)
     public void myTest2() {
 
         WebDriverManager.chromedriver().setup();
