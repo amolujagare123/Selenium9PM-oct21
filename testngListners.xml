@@ -1,0 +1,34 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="project name">
+
+    <listeners>
+        <listener class-name="ExtentReportDemo.Util.MyListners"/>
+    </listeners>
+
+
+
+
+    <parameter name="myUrl" value="http://facebook.com"/>
+    <parameter name="username" value="mayur"/>
+    <parameter name="password" value="mayur123"/>
+
+
+    <test name="module 1">
+
+
+        <classes>
+
+            <class name="TestNGDemo.Demos.ClassOne"/>
+
+            <class name="TestNGDemo.Demos.ClassTwo"/>
+        </classes>
+    </test>
+
+    <test name="module 2">
+        <classes>
+            <class name="TestNGDemo.Demos.ClassThree"/>
+        </classes>
+    </test>
+
+</suite>
