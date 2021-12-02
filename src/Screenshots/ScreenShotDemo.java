@@ -40,19 +40,15 @@ public class ScreenShotDemo {
 
         // 1. create the object reference of TakesScreenshot
         // assign current driver to it
-
         TakesScreenshot ts = (TakesScreenshot) driver;
 
         // 2. call getScreenshotAs method
-
         File scrFile = ts.getScreenshotAs(OutputType.FILE);
 
         // 3. copy this file object into a real image
-
         String timeStamp = new SimpleDateFormat("_yyyyMMdd_hhmmss").format(new Date());
 
         String fileName = "IMG"+timeStamp+".png";
-
 
         FileUtils.copyFile(scrFile,new File("D:\\screenshots\\"+fileName));
 
