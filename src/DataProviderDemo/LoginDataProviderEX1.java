@@ -17,7 +17,7 @@ import java.io.IOException;
 public class LoginDataProviderEX1 {
 
     @Test (dataProvider = "getData")
-    public void myTest1(String username,String password) {
+    public void myTest1(String username,String password) throws InterruptedException {
 
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
@@ -26,6 +26,8 @@ public class LoginDataProviderEX1 {
         driver.get("http://stock.scriptinglogic.net");
         driver.findElement(By.cssSelector("#login-username")).sendKeys(username); // #login-username
         driver.findElement(By.cssSelector("#login-password")).sendKeys(password); // #login-password
+
+        Thread.sleep(4000);
         driver.findElement(By.cssSelector(".blue")).click(); // .blue
 
     }
@@ -40,17 +42,17 @@ public class LoginDataProviderEX1 {
         HSSFWorkbook workbook = new HSSFWorkbook(fis);
 
         // 3. choose sheet from excel
-        HSSFSheet sheet = workbook.getSheet("Sheet1");
+        HSSFSheet sheet = workbook.getSheet("Sheet2");
 
         // 4. count the active rows
         int rowCount = sheet.getPhysicalNumberOfRows();
 
-        Object[][] data = new Object[rowCount][2];
+        Object[][] data = new Object[rowCount-1][2]; // 4 x 2
 
         //5. scan the rows and read the cell values in individual row
-        for(int i=0;i<rowCount;i++)
+        for(int i=0;i<rowCount-1;i++)
         {
-            HSSFRow row = sheet.getRow(i); // 0
+            HSSFRow row = sheet.getRow(i+1); // 1
 
             HSSFCell username = row.getCell(0);
 

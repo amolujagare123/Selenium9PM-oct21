@@ -51,8 +51,9 @@ public class LoginDataProviderEX {
         for(int i=0;i<rowCount;i++)
         {
             HSSFRow row = sheet.getRow(i); // 0
-            data[i][0] = row.getCell(0).toString();
-            data[i][1] = row.getCell(1).toString();
+
+            data[i][0] = row.getCell(0).toString();//username
+            data[i][1] = row.getCell(1).toString();//password
         }
 
 
