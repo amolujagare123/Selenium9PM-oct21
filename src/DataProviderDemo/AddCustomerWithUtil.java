@@ -13,10 +13,11 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class AddCustomer {
+import static DataProviderDemo.util.DataProviderUtil.getMyData;
+
+public class AddCustomerWithUtil {
     WebDriver driver;
 
     @BeforeClass
@@ -72,41 +73,7 @@ public class AddCustomer {
 
     @DataProvider
     public Object[][] getData() throws IOException {
-        // 1. read the file
-        FileInputStream fis = new FileInputStream("Data/myData.xls");
-
-        // 2. convert the file object into workbook object
-        HSSFWorkbook workbook = new HSSFWorkbook(fis);
-
-        // 3. choose sheet from excel
-        HSSFSheet sheet = workbook.getSheet("Add Customer");
-
-        // 4. count the active rows
-        int rowCount = sheet.getPhysicalNumberOfRows();
-        int colCount = sheet.getRow(0).getLastCellNum();
-
-        Object[][] data = new Object[rowCount-1][colCount];
-
-
-        for(int i=0;i<rowCount-1;i++)
-        {
-            HSSFRow row = sheet.getRow(i+1);
-
-            for(int j=0;j<colCount;j++) {
-
-                if(row.getCell(j)==null)
-                    data[i][j] ="";
-                else
-                     data[i][j] = row.getCell(j).toString();
-            }
-
-           /* data[i][0] = row.getCell(0).toString(); // name
-            data[i][1] = row.getCell(1).toString(); // address
-            data[i][2] = row.getCell(2).toString(); // contact1
-            data[i][3] = row.getCell(3).toString(); // contact2*/
-        }
-
-        return data;
+        return getMyData("Data/myData.xls","Add Customer");
     }
 
 
